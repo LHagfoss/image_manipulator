@@ -15,7 +15,7 @@ pub enum Commands {
         /// path to the image file to display
         file: PathBuf,
     },
-    /// Converts an image to a new format or compresses it
+    /// Converts an image to a new format
     Convert {
         /// path to the input image file
         input: PathBuf,
@@ -31,6 +31,16 @@ pub enum Commands {
         /// target height (y) in pixels
         height: u32,
         /// path to save the resized image
+        output: PathBuf,
+    },
+    /// Compresses an image to a smaller file size (JPEG usually)
+    Compress {
+        /// path to the input image file
+        input: PathBuf,
+        /// quality percentage (1-100, where 100 is best quality / largest file)
+        #[arg(value_parser = clap::value_parser!(u8).range(1..=100))]
+        quality: u8,
+        /// path to save the compressed image
         output: PathBuf,
     },
 }
