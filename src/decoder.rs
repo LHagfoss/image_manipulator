@@ -5,6 +5,11 @@ pub fn load(path: &str) -> DynamicImage {
     image::open(path).expect("Failed to open image")
 }
 
+/// saves image to a new path (automatically converts format based on extension)
+pub fn save(img: &DynamicImage, path: &str) {
+    img.save(path).expect("Failed to save image");
+}
+
 /// converts image to buffer for display
 /// uses RGBA pixel data to create a buffer of 32-bit unsigned integers
 pub fn convert(img: &DynamicImage) -> (u32, u32, Vec<u32>) {
