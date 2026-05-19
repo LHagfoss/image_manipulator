@@ -1,5 +1,5 @@
 [package]
-name = "image_viewer"
+name = "image_manipulator"
 version = "0.1.0"
 edition = "2024"
 
@@ -7,5 +7,5 @@ edition = "2024"
 clap = { version = "4.6.1", features = ["derive"] }
 colored = "3.1.1"
 image = "0.25.10"
-lagos_logger = { version = "0.1.1", default-features = false }
+lagos_logger = { version = "0.2.1", default-features = false }
 minifb = "0.28.0"

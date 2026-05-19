@@ -22,4 +22,15 @@ pub enum Commands {
         /// path to save the converted image (e.g., output.jpg)
         output: PathBuf,
     },
+    /// Resizes an image to a specific width and height
+    Resize {
+        /// path to the input image file
+        input: PathBuf,
+        /// target width (x) in pixels
+        width: u32,
+        /// target height (y) in pixels
+        height: u32,
+        /// path to save the resized image
+        output: PathBuf,
+    },
 }

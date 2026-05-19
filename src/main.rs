@@ -1,5 +1,5 @@
 use clap::Parser;
-use lagos_logger::{Colorize, info};
+use lagos_logger::{Colorize, Level, logger};
 
 use crate::cli::{Args, Commands};
 mod cli;
@@ -21,7 +21,21 @@ fn main() {
             let img = decoder::load(&input.to_string_lossy());
 
             decoder::save(&img, &output.to_string_lossy());
-            info!("successfully converted and saved to {:?}", output);
+            logger!(Level::Success, "successfully converted and saved to {:?}", output);
+        }
+        Commands::Resize {
+            input,
+            width,
+            height,
+            output,
+        } => {
+            let img = decoder::load(&input.to_string_lossy());
+
+            logger!(Level::Running, "resizing image to {}x{}...", width, height);
+            let resized_img = decoder::resize(&img, width, height);
+
+            decoder::save(&resized_img, &output.to_string_lossy());
+            logger!(Level::Success, "successfully resized and saved to {:?}", output);
         }
     }
 }
